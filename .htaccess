@@ -1,0 +1,25 @@
+# Habilitando MVC
+RewriteEngine On
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1
+
+# Removendo extensões da url 
+RewriteEngine on 
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_FILENAME}\.php -f 
+RewriteRule ^(.*)$ $1.php
+
+
+
+# Desabilitando a listagem de arquivos do diretório
+Options -Indexes
+
+#Forçando o download de arquivos
+AddType application/octet-stream .pdf
+AddType application/octet-stream .avi
+AddType application/octet-stream .xls
+
+
+#Alterando a diretiva memory_limit do php.ini
+php_value memory_limit 1024M
